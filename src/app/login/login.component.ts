@@ -11,10 +11,10 @@ export class LoginComponent implements OnInit{
   
   inputplaceholder = "Account Number" //Property Binding
 
-  acno = ""
-  //acno:any
-  psw:any
-  //pass = ""
+  // acno = ""    
+  // //acno:any
+  // psw:any
+  // //pass = ""
 
   userDetails:any = {
     1000 : {acno:1000, username:"Anu", password:"abc123", balance:0},
@@ -29,17 +29,48 @@ export class LoginComponent implements OnInit{
 
   }
 
-  login() {             // Event Binding
-    alert("BLAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH")
+  // login() {             // Event Binding
+  //   var acnum = this.acno
+  //   var psw = this.psw
+  //   var userDetails = this.userDetails
+  //   if (acnum in userDetails) {
+  //     if (psw == userDetails[acnum]["password"]) {
+  //       alert("Login Success")
+  //     }
+  //     else {
+  //       alert("Incorrect Password")
+  //     }
+  //   }
+  //   else {
+  //     alert("Incorrect Account Number/ Account not Registered.")
+  //   }
+  // }
+
+  login(a:any,b:any) {             // Event Binding
+    var acnum = a.value
+    var psw = b.value
+    var userDetails = this.userDetails
+    if (acnum in userDetails) {
+      if (psw == userDetails[acnum]["password"]) {
+        alert("Login Success")
+      }
+      else {
+        alert("Incorrect Password")
+      }
+    }
+    else {
+      alert("Incorrect Account Number/ Account not Registered.")
+    }
   }
-  acnoChange(event:any) {    //Event handling using $event
-    this.acno = event.target.value
-    console.log(this.acno);
+
+  // acnoChange(event:any) {    //Event handling using $event
+  //   this.acno = event.target.value
+  //   console.log(this.acno);
     
-  }
-  pswChange(event:any) {
-    this.psw = event.target.value  // when calling a variable again in oops, give this in beginning.
-    console.log(this.psw);
+  // }
+  // pswChange(event:any) {
+  //   this.psw = event.target.value  // when calling a variable again in oops, give this in beginning.
+  //   console.log(this.psw);
     
-  }
+  // }
 }
