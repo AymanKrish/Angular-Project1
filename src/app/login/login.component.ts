@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,10 @@ export class LoginComponent implements OnInit{
   // acno = ""    
   // //acno:any
   // psw:any
-  // //pass = ""
+  // //psw = ""
+
+  psw = ""
+  acno = ""
 
   userDetails:any = {
     1000 : {acno:1000, username:"Anu", password:"abc123", balance:0},
@@ -23,8 +28,8 @@ export class LoginComponent implements OnInit{
     1003 : {acno:1003, username:"Akil", password:"abc123", balance:0}
   }
 
-  constructor() {}
-
+  constructor(private router:Router, private ds:DataService) {}
+            // Dependency Injection - Access Specifier
   ngOnInit(): void {
 
   }
@@ -47,12 +52,13 @@ export class LoginComponent implements OnInit{
   // }
 
   login(a:any,b:any) {             // Event Binding
-    var acnum = a.value
-    var psw = b.value
-    var userDetails = this.userDetails
+    var acnum = this.acno
+    var psw = this.psw
+    var userDetails = this.ds.userDetails
     if (acnum in userDetails) {
       if (psw == userDetails[acnum]["password"]) {
         alert("Login Success")
+        this.router.navigateByUrl("dashboard")    // to navigate to dashboard page.
       }
       else {
         alert("Incorrect Password")
